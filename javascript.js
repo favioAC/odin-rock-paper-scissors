@@ -30,17 +30,52 @@ function getHumanChoice() {
 }
 
 // Creating function to play round
-function playRound(humanChoice, computerChoice) {
+/*function playRound(humanChoice, computerChoice) {
     let results;
     if(humanChoice === computerChoice) {
-        results = 'tie'
+        results = 'tie';
+        console.log('test 1');
     } else if (humanChoice === 'rock') {
         computerChoice === 'paper' ? results = 'computer' : results = 'human';
+        //console.log('test 2');
     } else if (humanChoice === 'paper') {
         computerChoice == 'scissors' ? results = 'computer' : results = 'human';
+        console.log('test 3');
     } else {
         computerChoice === 'rock' ? results = 'computer' : results = 'human';
+        console.log('test 4');
     } return results;
+}*/
+
+function playRound(humanChoice, computerChoice) {
+    if(humanChoice === computerChoice) {
+        console.log('This round is a tie!');
+    } else if(humanChoice === 'rock') {
+        if(computerChoice === 'paper') {
+            console.log('You lose! Paper beats rock.');
+            computerScore++;
+        } else {
+            console.log('You win! Rock beats scissors.');
+            humanScore++;
+        }
+    } else if(humanChoice === 'paper') {
+        if(computerChoice === 'scissors') {
+            console.log('You lose! Scissors beat paper.');
+            computerScore++;
+        } else {
+            console.log('You win! Paper beats rock.');
+            humanScore++;
+        }
+    } else {
+        if(computerChoice === 'rock') {
+            console.log('You lose! Rock beats scissors.');
+            computerScore++;
+        } else {
+            console.log('You win! Paper beats rock.');
+            humanScore++;
+        }
+    }
+
 }
 
 
@@ -51,11 +86,8 @@ const humanSelection = getHumanChoice();
 let humanScore = 0;
 let computerScore = 0;
 
-const results = playRound(humanSelection, computerSelection);
-
 playRound(humanSelection, computerSelection);
 
 console.log(`The computer chose ${computerSelection}. \nYou chose ${humanSelection}.`)
 console.log(`Computer score is ${computerScore}.`);
 console.log(`Human score is ${humanScore}.`);
-console.log(results);
