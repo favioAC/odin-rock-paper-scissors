@@ -4,6 +4,8 @@
 // Initialize counter to keep score
 // First to 5 wins
 
+
+// Creating function to randomize computer's choice
 function getComputerChoice () {
     const number = Math.floor(Math.random() * 100);
     return number > 66 ? 'rock'
@@ -11,6 +13,7 @@ function getComputerChoice () {
         : 'scissors';
 }
 
+// Creating function to capture human's choice
 function getHumanChoice () {
     let humanInput = prompt('Make a selection: Rock, Paper, or Scissors.', '');
     if (humanInput.toLowerCase() === 'rock') {
@@ -27,7 +30,11 @@ function getHumanChoice () {
 }
 
 const computerChoice = getComputerChoice();
-let humanChoice = getHumanChoice();
+const humanChoice = getHumanChoice();
+
+// Declaring and initializing scores
+let humanScore = 0;
+let computerScore = 0;
 
 console.log(`The computer chose ${computerChoice}.`);
 console.log(`You chose ${humanChoice}.`);
