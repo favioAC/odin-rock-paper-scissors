@@ -16,16 +16,19 @@ function getComputerChoice() {
 // Creating function to capture human's choice
 function getHumanChoice() {
     let humanInput = prompt('Make a selection: Rock, Paper, or Scissors.', '');
-    if (humanInput.toLowerCase() === 'rock') {
+    
+    if (humanInput === null) {
+        alert(`No selection made.`);
+        return getHumanChoice();
+    } else if (humanInput.toLowerCase() === 'rock') {
         return 'rock';
     } else if (humanInput.toLowerCase() === 'paper') {
         return 'paper';
     } else if (humanInput.toLowerCase() === 'scissors') {
         return 'scissors';
-    } else {
+    }else {
         alert(`You entered \"${humanInput}\". Make a valid selection from Rock, Paper, or Scissors.`);
-        return getHumanChoice();
-        
+        return getHumanChoice();    
     }
 }
 
@@ -78,7 +81,6 @@ function playRound(humanChoice, computerChoice) {
 
 }
 
-
 const computerSelection = getComputerChoice();
 const humanSelection = getHumanChoice();
 
@@ -86,7 +88,7 @@ const humanSelection = getHumanChoice();
 let humanScore = 0;
 let computerScore = 0;
 
-playRound(humanSelection, computerSelection);
+//playRound(humanSelection, computerSelection);
 
 console.log(`The computer chose ${computerSelection}. \nYou chose ${humanSelection}.`)
 console.log(`Computer score is ${computerScore}.`);
