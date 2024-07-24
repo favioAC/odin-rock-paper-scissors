@@ -72,9 +72,9 @@ function playGame() {
         playRound(humanSelection, computerSelection);
         playGame();
     } else {
-        humanScore === computerScore ? console.log(`Tie! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
-            : humanScore > computerScore ? console.log(`You wins! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
-            : console.log(`You lose! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
+        humanScore === computerScore ? console.log(`Final Results: \n--------------  \nIt's a tie! Play again to try your luck! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
+            : humanScore > computerScore ? console.log(`Final Results: \n--------------  \nYou wins! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
+            : console.log(`Final Results: \n-------------- \nYou lose! Better luck next time. \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
     }
 }
 
