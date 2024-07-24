@@ -6,7 +6,7 @@
 
 
 // Creating function to randomize computer's choice
-function getComputerChoice () {
+function getComputerChoice() {
     const number = Math.floor(Math.random() * 100);
     return number > 66 ? 'rock'
         : number > 33 ? 'paper'
@@ -14,7 +14,7 @@ function getComputerChoice () {
 }
 
 // Creating function to capture human's choice
-function getHumanChoice () {
+function getHumanChoice() {
     let humanInput = prompt('Make a selection: Rock, Paper, or Scissors.', '');
     if (humanInput.toLowerCase() === 'rock') {
         return 'rock';
@@ -29,12 +29,16 @@ function getHumanChoice () {
     }
 }
 
-const computerChoice = getComputerChoice();
-const humanChoice = getHumanChoice();
+// Create function to play round
+function playRound(humanChoice, computerChoice) {
+    
+}
+
+const computerSelection = getComputerChoice();
+const humanSelection = getHumanChoice();
 
 // Declaring and initializing scores
 let humanScore = 0;
 let computerScore = 0;
 
-console.log(`The computer chose ${computerChoice}.`);
-console.log(`You chose ${humanChoice}.`);
+console.log(`The computer chose ${computerSelection}. \nYou chose ${humanSelection}.`);
