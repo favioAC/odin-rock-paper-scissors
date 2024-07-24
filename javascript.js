@@ -29,10 +29,20 @@ function getHumanChoice() {
     }
 }
 
-// Create function to play round
+// Creating function to play round
 function playRound(humanChoice, computerChoice) {
-    
+    let results;
+    if(humanChoice === computerChoice) {
+        results = 'tie'
+    } else if (humanChoice === 'rock') {
+        computerChoice === 'paper' ? results = 'computer' : results = 'human';
+    } else if (humanChoice === 'paper') {
+        computerChoice == 'scissors' ? results = 'computer' : results = 'human';
+    } else {
+        computerChoice === 'rock' ? results = 'computer' : results = 'human';
+    } return results;
 }
+
 
 const computerSelection = getComputerChoice();
 const humanSelection = getHumanChoice();
@@ -41,4 +51,11 @@ const humanSelection = getHumanChoice();
 let humanScore = 0;
 let computerScore = 0;
 
-console.log(`The computer chose ${computerSelection}. \nYou chose ${humanSelection}.`);
+const results = playRound(humanSelection, computerSelection);
+
+playRound(humanSelection, computerSelection);
+
+console.log(`The computer chose ${computerSelection}. \nYou chose ${humanSelection}.`)
+console.log(`Computer score is ${computerScore}.`);
+console.log(`Human score is ${humanScore}.`);
+console.log(results);
