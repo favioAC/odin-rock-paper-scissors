@@ -5,7 +5,7 @@
 // Play a total of 5 rounds and print winner to console
 
 
-// Creating function to randomize computer's choice
+// Function randomly selects computer's choice
 function getComputerChoice() {
     const number = Math.floor(Math.random() * 100);
     return number > 66 ? 'rock'
@@ -13,7 +13,7 @@ function getComputerChoice() {
         : 'scissors';
 }
 
-// Creating function to capture human's choice
+// Function captures human's choice
 function getHumanChoice() {
     let humanInput = prompt('Make a selection: Rock, Paper, or Scissors.', '');
     if (humanInput === null) {
@@ -31,7 +31,7 @@ function getHumanChoice() {
     }
 }
 
-// Creating function to play round
+// Function determines winner for each round
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         console.log('This round is a tie!');
@@ -63,7 +63,7 @@ function playRound(humanChoice, computerChoice) {
 
 }
 
-// Creating function to repeat for 5 rounds
+// Function plays a total of 5 rounds
 function playGame() {
     ++round;
     if (round <=5) {
@@ -73,17 +73,13 @@ function playGame() {
         playGame();
     } else {
         humanScore === computerScore ? console.log(`Final Results: \n--------------  \nIt's a tie! Play again to try your luck! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
-            : humanScore > computerScore ? console.log(`Final Results: \n--------------  \nYou wins! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
+            : humanScore > computerScore ? console.log(`Final Results: \n--------------  \nYou win! Great job! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
             : console.log(`Final Results: \n-------------- \nYou lose! Better luck next time. \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
     }
 }
 
-// Declaring and initializing score trackers
 let humanScore = 0;
 let computerScore = 0;
-
-// Declaring and initializing round tracker
 let round = 0;
 
-// Calling game
 playGame();
