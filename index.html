@@ -3,8 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock, Paper, Scissors</title>
+        <link rel="stylesheet" href="./style.css">
+        <script src="./javascript.js" defer></script>
     </head>
     <body>
-        <script src="./javascript.js"></script>
+        <header class="header-area">
+            <div class="title">Play Rock Paper Scissors</div>
+        </header>
+        <div class="pick-area">
+            <div class="pick-header">Make your pick.  First to 5 wins the game.</div>
+        </div>
+        <div class="buttons-area">
+            <button id="rock" class="btn">Rock</button>
+            <button id="paper" class="btn">Paper</button>
+            <button id="scissors" class="btn">Scissors</button>
+        </div>
+        <div class="results-area">
+            <div class="results-header"></div>
+            <div class="results-msg"></div>
+        </div>
+        <div class="game-tracker">
+            <div class="user-area">
+                <div class="user-score">0</div>
+                <div class="user-name">User's Score</div>
+            </div>
+            <div class="final-area">
+                <div class="final-msg"></div>
+            </div>
+            <div class="computer-area">
+                <div class="computer-score">0</div>
+                <div class="computer-name">Computer's Score</div>
+            </div>
+        </div>
+        <div class="counter-area">
+            <div class="counter-details">
+                <div class="counter">0</div>
+                <div class="counter-title">Round</div>
+            </div>
+        </div>
+        <div class="reset-area">
+            <button class="reset-btn">Reset</button>
+        </div>
     </body>
 </html>

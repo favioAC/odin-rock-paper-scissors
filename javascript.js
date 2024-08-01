@@ -1,85 +1,119 @@
-// Computer randomly selects rock, paper, or scissors
-// User inputs selection from rock, paper, or scissors
-// Determine round winner and print results to console
-// Initialize score trackers and round tracker
-// Play a total of 5 rounds and print winner to console
-
-
-// Function randomly selects computer's choice
-function getComputerChoice() {
+function getComputerChoice () {
     const number = Math.floor(Math.random() * 100);
     return number > 66 ? 'rock'
         : number > 33 ? 'paper'
         : 'scissors';
 }
 
-// Function captures human's choice
-function getHumanChoice() {
-    let humanInput = prompt('Make a selection: Rock, Paper, or Scissors.', '');
-    if (humanInput === null) {
-        alert(`No selection made.`);
-        getHumanChoice();
-    } else if (humanInput.toLowerCase() === 'rock') {
-        return 'rock';
-    } else if (humanInput.toLowerCase() === 'paper') {
-        return 'paper';
-    } else if (humanInput.toLowerCase() === 'scissors') {
-        return 'scissors';
-    } else {
-        alert(`You entered \"${humanInput}\". Make a valid selection from Rock, Paper, or Scissors.`);
-        return getHumanChoice();    
+const btn = Array.from(document.querySelectorAll('.btn'));
+
+addListener();
+
+function playRound() {
+    let computer = getComputerChoice();
+    let user = btn.id;
+    let roundWinner;
+    if (user === computer) roundWinner = 'tie';
+    else {
+        switch (user) {
+            case 'rock':
+                roundWinner = computer === 'paper' ? 'computer'
+                    : 'user';
+                break;
+            case 'paper':
+                roundWinner = computer === 'scissors' ? 'computer'
+                    : 'user';
+                break;
+            default:
+                roundWinner =  computer === 'rock' ? 'computer'
+                    : 'user'
+                break;
+        }
+    }
+    resultsHeader.textContent = 'Round Results:'
+    resultsMsg.textContent = roundWinner === 'user' ? `You won this round!  The computer picked ${computer}.`
+        : roundWinner === 'computer' ? `You lost this round.  The computer picked ${computer}.`
+        : `This round is a tie!  You both picked ${computer}.`;
+    scoreBoard(roundWinner);
+}
+
+function scoreBoard (winner) {
+    let player;
+    if (winner === 'user') userScore++;
+    if (winner === 'computer') computerScore++;
+    // console.log('User score: ' + userScore);
+    // console.log('Computer score: ' + computerScore);
+    roundTracker();
+    userScoreDisplay.textContent = userScore;
+    computerScoreDisplay.textContent = computerScore;
+    if (userScore === 5 || computerScore === 5) {
+        player = userScore > computerScore ? 'user'
+            : 'computer';
+        finalWinner(player);
     }
 }
 
-// Function determines winner for each round
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        console.log('This round is a tie!');
-    } else if (humanChoice === 'rock') {
-        if (computerChoice === 'paper') {
-            console.log('You lose! Paper beats rock.');
-            computerScore++;
-        } else {
-            console.log('You win! Rock beats scissors.');
-            humanScore++;
-        }
-    } else if (humanChoice === 'paper') {
-        if (computerChoice === 'scissors') {
-            console.log('You lose! Scissors beat paper.');
-            computerScore++;
-        } else {
-            console.log('You win! Paper beats rock.');
-            humanScore++;
-        }
-    } else {
-        if (computerChoice === 'rock') {
-            console.log('You lose! Rock beats scissors.');
-            computerScore++;
-        } else {
-            console.log('You win! Paper beats rock.');
-            humanScore++;
-        }
-    }
+function roundTracker () {
+    roundCounter++;
+    counterDisplay.textContent = roundCounter;
+}
+
+function finalWinner (player) {
+    finalResultsMsg.textContent = player === 'user' ? 'You beat the computer, congratulations!'
+        : 'You lose!  Better luck next time.';
+    killBtns();
+}
+
+function addListener () {
+    btn.forEach(btn => btn.addEventListener('mousedown', mouseUp));
+}
+
+function mouseUp () {
+    this.classList.add('btn-clicked');
+    this.addEventListener('mouseup', (e) => this.classList.remove('btn-clicked'));
+    playRound();
+}
+
+function killBtns () {
+    btn.forEach(btn => btn.removeEventListener('mousedown', mouseUp));
+    launchReset();
+}
+
+function launchReset () {
+    resetBtn.style.display = 'block';
+    addResetBtnEvent ();
+}
+
+function addResetBtnEvent () {
+    resetBtn.addEventListener('mousedown', gameReset)
 
 }
 
-// Function plays a total of 5 rounds
-function playGame() {
-    ++round;
-    if (round <=5) {
-        const computerSelection = getComputerChoice();
-        const humanSelection = getHumanChoice();
-        playRound(humanSelection, computerSelection);
-        playGame();
-    } else {
-        humanScore === computerScore ? console.log(`Final Results: \n--------------  \nIt's a tie! Play again to try your luck! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
-            : humanScore > computerScore ? console.log(`Final Results: \n--------------  \nYou win! Great job! \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
-            : console.log(`Final Results: \n-------------- \nYou lose! Better luck next time. \nComputer score is ${computerScore}. \nYour score is ${humanScore}.`)
-    }
+function gameReset () {
+    // resetBtn.style.display = 'none';
+    userScore = 0;
+    computerScore = 0;
+    roundCounter = 0;
+    userScoreDisplay.textContent = userScore;
+    computerScoreDisplay.textContent = computerScore;
+    counterDisplay.textContent = roundCounter;
+    this.classList.add('btn-clicked');
+    this.addEventListener('mouseup', (e) => {
+        this.classList.remove('btn-clicked');
+        resetBtn.style.display = 'none';
+
+    });
+    addListener ();
 }
 
-let humanScore = 0;
+let userScore = 0;
 let computerScore = 0;
-let round = 0;
+let roundCounter = 0;
 
-playGame();
+const resultsHeader = document.querySelector('.results-header');
+const resultsMsg = document.querySelector('.results-msg');
+const userScoreDisplay = document.querySelector('.user-score');
+const computerScoreDisplay = document.querySelector('.computer-score');
+const finalResultsMsg = document.querySelector('.final-msg');
+const counterDisplay = document.querySelector('.counter');
+const resetBtn = document.querySelector('.reset-btn');
