@@ -41,8 +41,6 @@ function scoreBoard (winner) {
     let player;
     if (winner === 'user') userScore++;
     if (winner === 'computer') computerScore++;
-    // console.log('User score: ' + userScore);
-    // console.log('Computer score: ' + computerScore);
     roundTracker();
     userScoreDisplay.textContent = userScore;
     computerScoreDisplay.textContent = computerScore;
@@ -90,13 +88,15 @@ function addResetBtnEvent () {
 }
 
 function gameReset () {
-    // resetBtn.style.display = 'none';
     userScore = 0;
     computerScore = 0;
     roundCounter = 0;
     userScoreDisplay.textContent = userScore;
     computerScoreDisplay.textContent = computerScore;
     counterDisplay.textContent = roundCounter;
+    resultsHeader.textContent = '';
+    resultsMsg.textContent = '';
+    finalResultsMsg.textContent = '';
     this.classList.add('btn-clicked');
     this.addEventListener('mouseup', (e) => {
         this.classList.remove('btn-clicked');
