@@ -9,9 +9,10 @@ const btn = Array.from(document.querySelectorAll('.btn'));
 
 addListener();
 
-function playRound() {
+function playRound(pick) {
     let computer = getComputerChoice();
-    let user = btn.id;
+    let user = pick;
+    console.log(user);
     let roundWinner;
     if (user === computer) roundWinner = 'tie';
     else {
@@ -69,7 +70,7 @@ function addListener () {
 function mouseUp () {
     this.classList.add('btn-clicked');
     this.addEventListener('mouseup', (e) => this.classList.remove('btn-clicked'));
-    playRound();
+    playRound(this.id);
 }
 
 function killBtns () {
